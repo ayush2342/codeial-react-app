@@ -1,7 +1,27 @@
 import { useEffect, useState } from "react";
 import {getPosts} from '../api/index'
-import { Home } from '../pages';
+import { Home ,Login} from '../pages';
 import {Loader,Navbar} from "./";
+import { BrowserRouter as Router, Route,Routes } from "react-router-dom";
+
+
+function About(){
+  return(
+      <h1>About</h1>
+  )
+}
+
+function UserInfo(){
+  return(
+      <h1>About</h1>
+  )
+}
+
+function Page404(){
+  return(
+      <h1>404</h1>
+  )
+}
 
 function App() {
 
@@ -12,7 +32,7 @@ function App() {
 
     const fetchPosts = async ()=>{
 
-       const response = await getPosts();
+       const response = await getPosts(1,3);
        if(response.success)
        {
         setPosts(response.data.posts)
@@ -32,8 +52,20 @@ function App() {
 
 
     <div className="App">
+      
+       <Router>
        <Navbar/>
-    <Home posts={posts}/>
+       
+       <Routes>
+          <Route path="/" element={<Home posts={posts} />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/user?dhdi" element={<UserInfo />} />
+          <Route path="*" element={<Page404 />} />
+        </Routes>
+       
+       </Router>
+    
     </div>
   );
 }
