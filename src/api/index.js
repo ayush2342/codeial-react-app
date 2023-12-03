@@ -2,6 +2,7 @@ import {API_URLS,LOCALSTORAGE_TOKEN_KEY} from '../utils'
 import { getFormBody } from '../utils'
 
 
+
 const customFetch = async (url , {body, ...customConfig})=>
 {
 
@@ -74,3 +75,16 @@ export const login=(email,password)=>{
         }
     })
 }
+
+export const register=async (name,email,password,confirmPassword)=>{
+    return customFetch(API_URLS.signup(),{
+        method:'POST',
+        body:{
+            name,
+            email,
+            password,
+            confirm_password:confirmPassword
+        }
+    })
+}
+

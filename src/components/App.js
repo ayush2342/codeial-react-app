@@ -1,21 +1,8 @@
-import { useEffect, useState } from "react";
-import {getPosts} from '../api/index'
-import { Home ,Login} from '../pages';
+import { Home ,Login,Register} from '../pages';
 import {Loader,Navbar} from "./";
 import { BrowserRouter as Router, Route,Routes } from "react-router-dom";
+import { useAuth } from "../hooks";
 
-
-function About(){
-  return(
-      <h1>About</h1>
-  )
-}
-
-function UserInfo(){
-  return(
-      <h1>About</h1>
-  )
-}
 
 function Page404(){
   return(
@@ -24,27 +11,10 @@ function Page404(){
 }
 
 function App() {
+  const auth=useAuth();
 
-  const [posts,setPosts]=useState([]);
-  const [loading,setLoading]=useState(true)
-
-  useEffect(()=>{
-
-    const fetchPosts = async ()=>{
-
-       const response = await getPosts(1,3);
-       if(response.success)
-       {
-        setPosts(response.data.posts)
-       }
-
-       setLoading(false)
-    }
-
-    fetchPosts()
-  },[])
-
-  if(loading)
+  
+  if(auth.loading)
   {
     return <Loader/>;
   }
@@ -57,10 +27,9 @@ function App() {
        <Navbar/>
        
        <Routes>
-          <Route path="/" element={<Home posts={posts} />} />
+          <Route path="/" element={<Home posts={[]} />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/user?dhdi" element={<UserInfo />} />
+          <Route path="/register" element={<Register />} />
           <Route path="*" element={<Page404 />} />
         </Routes>
        
