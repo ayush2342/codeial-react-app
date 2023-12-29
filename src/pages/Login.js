@@ -2,6 +2,7 @@ import { useState } from 'react';
 import styles from '../styles/login.module.css';
 import { useToasts } from 'react-toast-notifications';
 import { useAuth } from '../hooks';
+import { Navigate } from 'react-router-dom';
 
 const Login = () => {
 
@@ -10,7 +11,6 @@ const Login = () => {
   const[logginIn,setLoggin]=useState(false);
   const {addToast}=useToasts();
   const auth=useAuth();
-  console.log(auth)
 
   const handleSubmit = async (event)=>{
     event.preventDefault();
@@ -46,18 +46,24 @@ const Login = () => {
 
   }
 
+  
+  if(auth.user)
+  {
+    return <Navigate to='/' />
+  }
+
 
   return (
     <form className={styles.loginForm} onSubmit={handleSubmit}>
       <span className={styles.loginSignupHeader}>Log In</span>
 
       <div className={styles.field}>
-        <input type="email" placeholder="Email" onChange={(event)=>{
+        <input type="email" placeholder="Email" autoComplete='email' onChange={(event)=>{
           setEmail(event.target.value)}}/>
       </div>
 
       <div className={styles.field}>
-        <input type="password" placeholder="Password" onChange={(event)=>{
+        <input type="password" placeholder="Password" autoComplete="password" onChange={(event)=>{
           setPassword(event.target.value)
         }}/>
       </div>

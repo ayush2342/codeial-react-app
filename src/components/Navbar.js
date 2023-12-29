@@ -19,7 +19,7 @@ const Navbar = () => {
 
       <div className={styles.rightNav}>
         {auth.user&&<div className={styles.user}>
-          <a href="/">
+          <a href="/settings">
             <img
               src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsyA44JdhHChP6kGqx36BolQq4Hn7z2yGekw&usqp=CAU"
               alt=""
@@ -33,7 +33,7 @@ const Navbar = () => {
           <ul>
             {auth.user?
             <li onClick={auth.logout}>
-              <a href="/">Log out</a>
+              <Link to="/login">Log out</Link>
             </li>:<>
             <li>
               <Link to="/login">Log in</Link>

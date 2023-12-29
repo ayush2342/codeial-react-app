@@ -3,18 +3,24 @@ import PropTypes from 'prop-types';
 import { useState,useEffect } from 'react';
 import {getPosts} from '../api/index';
 import {Loader} from "../components";
+import {Link} from 'react-router-dom'
+import { useAuth } from '../hooks';
+import { Navigate } from 'react-router-dom';
 
 import {Comment} from '../components'
 const Home = () => {
 
   const [posts,setPosts]=useState([]);
   const [loading,setLoading]=useState(true)
+  const auth=useAuth();
+
+
 
   useEffect(()=>{
 
     const fetchPosts = async ()=>{
 
-       const response = await getPosts(1,3);
+       const response = await getPosts(1,7);
        if(response.success)
        {
         setPosts(response.data.posts)
@@ -25,6 +31,11 @@ const Home = () => {
 
     fetchPosts()
   },[])
+
+  if (!auth.user) {
+    return <Navigate to='/login'/>;
+  
+  }
 
   if(loading)
   {
@@ -43,7 +54,14 @@ const Home = () => {
             alt="user-pic"
           />
           <div>
-            <span className={styles.postAuthor}>{post.user.name}</span>
+            <Link 
+            to={{
+              pathname:`/user/${post.user._id}`,
+              state:{
+              user:post.user
+            }
+          }} 
+            className={styles.postAuthor}>{post.user.name}</Link>
             <span className={styles.postTime}>a minute ago</span>
           </div>
         </div>

@@ -88,3 +88,39 @@ export const register=async (name,email,password,confirmPassword)=>{
     })
 }
 
+export const editProfile=async (userID,name,password,confirmPassword)=>{
+    return customFetch(API_URLS.editUser(),{
+        method:'POST',
+        body:{
+            id:userID,
+            name,
+            password,
+            confirm_password:confirmPassword
+        }
+    })
+}
+
+export const fetchUserProfile=async (userid)=>{
+    return customFetch(API_URLS.userInfo(userid),{
+        method:'GET'
+    })
+}
+
+export const fetchUserFriends=async ()=>{
+    return customFetch(API_URLS.friends(),{
+        method:'GET'
+    })
+}
+
+export const addFriend=async (userId)=>{
+    return customFetch(API_URLS.createFriendship(userId),{
+        method:'POST'
+    })
+}
+
+export const removeFriend=async (userId)=>{
+    return customFetch(API_URLS.removeFriend(userId),{
+        method:'POST'
+    })
+}
+

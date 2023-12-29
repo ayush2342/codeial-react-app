@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import styles from '../styles/register.module.css';
 import { useToasts } from 'react-toast-notifications';
-// import { useHistory } from 'react-router-dom';
 import { useAuth } from '../hooks';
+import { Navigate } from 'react-router-dom';
 
 const Register = () => {
     
@@ -14,7 +14,6 @@ const Register = () => {
 
   const [signingUp, setSigningUp] = useState('');
   const auth = useAuth();
-//   const history = useHistory();
 
 const handleLoginNavigation = () => {
     window.location.href = '/login';
@@ -55,7 +54,6 @@ const handleLoginNavigation = () => {
 
     if(response.success)
     {
-        // history.push('/login');
         
         setSigningUp(false);
 
@@ -78,6 +76,11 @@ const handleLoginNavigation = () => {
     setSigningUp(false);
 
 
+  }
+
+  if(auth.user)
+  {
+    return <Navigate to='/' />
   }
 
 
