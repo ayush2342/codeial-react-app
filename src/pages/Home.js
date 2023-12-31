@@ -7,7 +7,7 @@ import {Link} from 'react-router-dom'
 import { useAuth } from '../hooks';
 import { Navigate } from 'react-router-dom';
 
-import {Comment} from '../components'
+import {Comment,FriendsList} from '../components'
 const Home = () => {
 
   const [posts,setPosts]=useState([]);
@@ -43,6 +43,7 @@ const Home = () => {
   }
 
   return (
+    <div className={styles.home}>
     <div className={styles.postsList}>
       {
         posts.map((post)=>{
@@ -99,7 +100,8 @@ const Home = () => {
 
         })
       }
-      
+      </div>
+      <FriendsList />
     </div>
   );
 };
