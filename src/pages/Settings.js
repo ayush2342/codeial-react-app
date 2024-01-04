@@ -15,7 +15,9 @@ const Settings = () => {
     const [savingForm,setsavingForm]=useState(false);
     const {addToast} = useToasts();
 
+   
     const clearForm =()=>{
+    
       setName('');
       setpassword('');
       setconfirmPassword('');

@@ -50,3 +50,30 @@ export const getFormBody =(params)=>{
 
     return formBody.join('&'); //'username=ayush&password=12345'
 }
+
+export const getTimeDifference = (createdAt) => {
+    const currentDate = new Date();
+    const createdDate = new Date(createdAt);
+  
+    const differenceInMilliseconds = currentDate - createdDate;
+    const differenceInDays = Math.floor(differenceInMilliseconds / (1000 * 60 * 60 * 24));
+  
+    if (differenceInDays === 0) {
+      const differenceInHours = Math.floor(differenceInMilliseconds / (1000 * 60 * 60));
+      if (differenceInHours === 0) {
+        const differenceInMinutes = Math.floor(differenceInMilliseconds / (1000 * 60));
+        if (differenceInMinutes < 1) {
+          return 'Just now';
+        } else {
+          return `${differenceInMinutes} minutes ago`;
+        }
+      } else {
+        return `${differenceInHours} hours ago`;
+      }
+    }else {
+      return `${differenceInDays} days ago`;
+    }
+  };
+  
+  
+  

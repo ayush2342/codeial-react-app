@@ -124,3 +124,34 @@ export const removeFriend=async (userId)=>{
     })
 }
 
+export const AddPost=async (content)=>{
+    return customFetch(API_URLS.createPost(),{
+        method:'POST',
+        body:{
+            content
+        }
+    })
+}
+
+export const AddComment=async (post_id,content)=>{
+    return customFetch(API_URLS.comment(),{
+        method:'POST',
+        body:{
+            post_id,
+            content
+        }
+    })
+}
+
+export const toggleLike=async (itemId,itemType)=>{
+    return customFetch(API_URLS.toggleLike(itemId,itemType),{
+        method:'POST'
+    })
+}
+
+export const deleteComment=async (commentId)=>{
+    return customFetch(API_URLS.deleteComment(commentId),{
+        method:'POST'
+    })
+}
+

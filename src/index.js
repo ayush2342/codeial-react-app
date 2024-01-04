@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './styles/index.css';
 import {App} from './components';
 import {ToastProvider} from 'react-toast-notifications';
-import { AuthProvider } from './providers/AuthProvider';
+import { AuthProvider ,PostsProvider} from './providers';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -12,7 +12,10 @@ root.render(
     <ToastProvider autoDismiss autoDismissTimeout={3000} placement='top-left'>
 
       <AuthProvider>
-      <App />
+        <PostsProvider>
+        <App />
+        </PostsProvider>
+    
       </AuthProvider>
     
     </ToastProvider>
