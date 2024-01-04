@@ -12,7 +12,7 @@ const FriendsList = () => {
       <div className={styles.header}>Friends</div>
 
       {friends && friends.length === 0 && (
-        <div className={styles.noFriends}>NO friends found!</div>
+        <div className={styles.noFriends}>User friends List is Empty.Add Some Friends!</div>
       )}
 
       {friends &&

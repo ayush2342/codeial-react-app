@@ -13,7 +13,7 @@ function Comment({comment,post})
   const {addToast}=useToasts();
   const [requestInProgress,setRequestInProgress]=useState(false);
   const posts=usePosts();
-  console.log(comment)
+
 
   const handleDeleteComment=async()=>{
 

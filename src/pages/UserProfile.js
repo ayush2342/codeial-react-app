@@ -16,7 +16,6 @@ const UserProfile = () => {
     const auth=useAuth();
     const {userid}=useParams();
     const {addToast}=useToasts();
-    console.log(auth)
     
    
 

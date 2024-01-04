@@ -155,3 +155,8 @@ export const deleteComment=async (commentId)=>{
     })
 }
 
+export const searchUsers=async (searchText)=>{
+    return customFetch(API_URLS.searchUsers(searchText),{
+        method:'GET'
+    })
+}
